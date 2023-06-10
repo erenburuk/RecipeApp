@@ -1,0 +1,91 @@
+﻿@page
+@model RecipeApp.Pages.Recipe.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    int i = 0;
+    string rate = "";
+}
+@*
+<head>
+    <link rel="stylesheet" href="~/css/card.css" />
+</head>
+*@
+
+<form>
+    <p>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+<h1>Recipes</h1>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@foreach (var item in Model.Recipe)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/tomato-soup.jpg" class="card-img-top" alt="Tomato Soup">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            <p>
+                @if (Model.RecipeAverageRatingsList[i] == 0.0)
+                {
+                    rate = "No rating";
+                    i++;
+                }
+                else
+                {
+                    rate = "Average rating: " + Model.RecipeAverageRatingsList[i].ToString() + " out of 5";
+                    i++;
+                }
+                @rate
+            </p>
+
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            <a asp-page="./Edit" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Edit</a> |
+            <a asp-page="./Details" class="btn btn-success btn-sm" asp-route-id="@item.Id">Details</a> |
+            <a asp-page="./Delete" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Delete</a>
+            <a asp-page="/Rate" class="btn btn-link" asp-route-id="@item.Id">Rate</a>
+        </div>
+    </div>
+
+}
+
+@*
+<section class="section-meals">
+    <div class="container grid grid--3-cols margin-right-md">
+        <div class="meal">
+            <img src="https://github.com/erenburuk/html-css-course/blob/1aacbb283eed0f760ab9f905e4ad5099cfa11204/07-Omnifood-Desktop/img/meals/meal-1.jpg?raw=true"
+                 class="meal-img"
+                 alt="Japanese Gyozas" />
+            <div class="meal-content">
+                <div class="meal-tags">
+                    <span class="tag tag--vegetarian">Vegetarian</span>
+                </div>
+                <p class="meal-title">Japanese Gyozas</p>
+                <ul class="meal-attributes">
+                    <li class="meal-attribute">
+                        <ion-icon class="meal-icon" name="flame-outline"></ion-icon><span><strong>650</strong> calories</span>
+                    </li>
+                    <li class="meal-attribute">
+                        <ion-icon class="meal-icon" name="restaurant-outline"></ion-icon><span>NutriScore &reg; <strong>74</strong></span>
+                    </li>
+                    <li class="meal-attribute">
+                        <ion-icon class="meal-icon" name="star-outline"></ion-icon><span><strong>4.9</strong> rating (537)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+*@
+
+
