@@ -67,7 +67,10 @@
         </dd>
     </dl>
 </div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Recipe?.Id">Edit</a> |
+    <a asp-page="/AddIngredient" asp-route-id="@Model.Recipe?.Id">Add Ingredient</a> |
+    @*<a asp-page="/AddDescription" asp-route-id="@Model.Recipe?.Id">Add Description</a>*@ |
     <a asp-page="./Index">Back to List</a>
 </div>

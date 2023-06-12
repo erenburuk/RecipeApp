@@ -3,16 +3,34 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RecipeApp</title>
+    <title>@ViewData["Title"] - Recipefy</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RecipeApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background: hsla(79, 81%, 94%, 1);
+            background: linear-gradient(315deg, hsla(79, 81%, 94%, 1) 55%, hsla(47, 100%, 62%, 1) 100%);
+            background: -moz-linear-gradient(315deg, hsla(79, 81%, 94%, 1) 55%, hsla(47, 100%, 62%, 1) 100%);
+            background: -webkit-linear-gradient(315deg, hsla(79, 81%, 94%, 1) 55%, hsla(47, 100%, 62%, 1) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F4FCE3", endColorstr="#FFD43B", GradientType=1 );
+        }
+
+        ion-icon {
+            color: #f59f00;
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">RecipeApp</a>
+            <div class="container d-flex justify-content-center align-items-center fs-5 fw-medium">
+                <div><ion-icon class="me-2" name="nutrition-outline" class="me-2"></ion-icon></div>
+                <div class="title"><a class="navbar-brand fs-3 fw-bold" asp-area="" asp-page="/Index">Recipefy</a></div>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,10 +41,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Recipe/Index">Recipe</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Recipe/Index">Recipes</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -34,15 +49,16 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - RecipeApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="footer text-muted">
+        <div class="container" style="font-size:12px;">
+            &copy; 2023 - Recipefy - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
@@ -50,6 +66,12 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+
 </html>

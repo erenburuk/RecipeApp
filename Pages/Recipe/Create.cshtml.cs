@@ -17,12 +17,12 @@ namespace RecipeApp.Pages.Recipe
         private readonly RecipeApp.Models.RecipeAppContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public CreateModel(RecipeApp.Models.RecipeAppContext context,
-                            UserManager<IdentityUser> userManager)
+        public CreateModel(RecipeApp.Models.RecipeAppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
+
 
         [BindProperty]
         public Models.Recipe Recipe { get; set; } = default!;
@@ -35,6 +35,7 @@ namespace RecipeApp.Pages.Recipe
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
+
             this.Recipe = new Models.Recipe { UserId = user.Id };
 
             return Page();
@@ -43,7 +44,7 @@ namespace RecipeApp.Pages.Recipe
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Recipes == null || Recipe == null)
+            if (!ModelState.IsValid || _context.Recipes == null || Recipe == null)
             {
                 return Page();
             }

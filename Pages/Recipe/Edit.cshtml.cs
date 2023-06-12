@@ -29,6 +29,7 @@ namespace RecipeApp.Pages.Recipe
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+
             if (id == null || _context.Recipes == null)
             {
                 return NotFound();
@@ -39,13 +40,14 @@ namespace RecipeApp.Pages.Recipe
             {
                 return NotFound();
             }
+
             Recipe = recipe;
-            
+
+           
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+
         public async Task<IActionResult> OnPostAsync()
         {
             userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the logged-in user's userId
@@ -76,6 +78,7 @@ namespace RecipeApp.Pages.Recipe
                 }
             }
             return RedirectToPage("./Index");
+            
         }
 
         private bool RecipeExists(int id)

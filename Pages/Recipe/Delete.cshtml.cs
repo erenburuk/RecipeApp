@@ -38,7 +38,7 @@ namespace RecipeApp.Pages.Recipe
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Recipe = recipe;
             }
@@ -47,15 +47,25 @@ namespace RecipeApp.Pages.Recipe
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the logged-in user's userId
-
+            userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || _context.Recipes == null)
             {
                 return NotFound();
             }
+
+            var recipe = await _context.Recipes.FirstOrDefaultAsync(m => m.Id == id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                Recipe = recipe;
+            }
+
             if (Recipe.UserId == userId)
             {
-                var recipe = await _context.Recipes.FindAsync(id);
+                recipe = await _context.Recipes.FindAsync(id);
 
                 if (recipe != null)
                 {

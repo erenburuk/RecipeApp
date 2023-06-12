@@ -16,5 +16,11 @@ namespace RecipeApp.Pages
         {
 
         }
+
+        public IActionResult OnPostRecipe()
+        {
+            return RedirectToPage("/Recipe/Index"); // "/Recipe/Index" sayfasına yönlendirme yapılıyor
+        }
+
     }
 }

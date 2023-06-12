@@ -40,5 +40,21 @@ namespace RecipeApp.Pages.Recipe
             }
             return Page();
         }
+
+        public async Task<IActionResult> OnGetAddIngredientAsync(int? id)
+        {
+            if (id == null || _context.Recipes == null)
+            {
+                return NotFound();
+            }
+
+            var recipe = await _context.Recipes.FirstOrDefaultAsync(m => m.Id == id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("/Ingredient/AddIngredient", new { recipeId = id });
+        }
     }
 }
